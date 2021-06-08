@@ -1,0 +1,259 @@
+<div class="card">
+  <div>
+    <div class="row d-flex flex-wrap align-items-center">
+      <div class="col">
+        <form (ngSubmit)="editar()" class="card-body" #newUserForm="ngForm">
+          <h1 class="display-6 mb-3 mt-3">Edição de um usuário:</h1>
+
+          <app-mensagem
+            *ngIf="campoUserName.invalid && campoUserName.touched"
+            mensagem="Nome obrigtório"
+          ></app-mensagem>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Nome</span>
+            </div>
+
+            <input
+              [(ngModel)]="user.name"
+              #campoUserName="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite seu nome."
+              name="nome"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoEmail.invalid && campoEmail.touched"
+            mensagem="Email obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Email</span>
+            </div>
+            <input
+              [(ngModel)]="user.email"
+              #campoEmail="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite seu email."
+              name="email"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoPhone.invalid && campoPhone.touched"
+            mensagem="Telefone obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1"
+                >Telefone</span
+              >
+            </div>
+            <input
+              [(ngModel)]="user.phone"
+              #campoPhone="ngModel"
+              type="text"
+              prefix="+55"
+              mask=" (00) 00000-0000"
+              class="form-control col"
+              placeholder="Digite seu telefone."
+              name="phone"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoBirthdate.invalid && campoBirthdate.touched"
+            mensagem="Nome obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1"
+                >Nascimento</span
+              >
+            </div>
+            <input
+              [(ngModel)]="user.birthdate"
+              #campoBirthdate="ngModel"
+              type="date"
+              class="form-control col"
+              placeholder="Digite seu nascimento."
+              name="nascimento"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoThumb.invalid && campoThumb.touched"
+            mensagem="Thumb obrigtória"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Thumb</span>
+            </div>
+            <input
+              [(ngModel)]="user.thumb"
+              #campoThumb="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Insira o link de uma thumb."
+              name="thumb"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <h1 class="display-6 mb-3 mt-3">Informações sobre o endereço</h1>
+
+          <app-mensagem
+            *ngIf="campoStreet.invalid && campoStreet.touched"
+            mensagem="Rua obrigtória"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Rua</span>
+            </div>
+            <input
+              [(ngModel)]="user.adress.street"
+              #campoStreet="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite sua rua."
+              name="rua"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoNumber.invalid && campoNumber.touched"
+            mensagem="Numero obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Numero</span>
+            </div>
+            <input
+              [(ngModel)]="user.adress.number"
+              #campoNumber="ngModel"
+              type="number"
+              class="form-control col"
+              placeholder="Digite seu numero."
+              name="numero"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoDisctrict.invalid && campoDisctrict.touched"
+            mensagem="Bairro obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Bairro</span>
+            </div>
+            <input
+              [(ngModel)]="user.adress.district"
+              #campoDisctrict="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite seu bairro."
+              name="bairro"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoCity.invalid && campoCity.touched"
+            mensagem="Rua obrigtória"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Cidade</span>
+            </div>
+            <input
+              [(ngModel)]="user.adress.city"
+              #campoCity="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite sua ciade."
+              name="cidade"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoState.invalid && campoState.touched"
+            mensagem="Estado obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1">Estado</span>
+            </div>
+            <input
+              [(ngModel)]="user.adress.state"
+              #campoState="ngModel"
+              type="text"
+              class="form-control col"
+              placeholder="Digite seu estado."
+              name="estado"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <app-mensagem
+            *ngIf="campoPostcode.invalid && campoPostcode.touched"
+            mensagem="Código postal obrigtório"
+          ></app-mensagem>
+          <div class="input-group col mb-3">
+            <div class="input-group-prepend col-3">
+              <span class="input-group-text col" id="basic-addon1"
+                >Código Postal</span
+              >
+            </div>
+            <input
+              [(ngModel)]="user.adress.postcode"
+              #campoPostcode="ngModel"
+              mask="00000-000"
+              type="text"
+              class="form-control col"
+              placeholder="Digite o código postal."
+              name="codigo"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+
+          <button
+            class="btn btn-warning btn-lg col-12"
+            [disabled]="newUserForm.invalid"
+          >
+            Editar
+          </button>
+        </form>
+      </div>
+
+      <div class="col-5">
+        <div>
+          <img
+            class="img-fluid"
+            src="https://img.icons8.com/bubbles/452/edit-user.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

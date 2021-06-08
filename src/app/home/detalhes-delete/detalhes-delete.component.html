@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-header alert-dark cursor" style="background-color: #b2eaf8">
+    <h4>Usuário</h4>
+  </div>
+  <div class="card-body">
+    <div class="row d-flex flex-wrap align-items-center">
+      <div class="col-12 col-sm-8 mb-3">
+        <dl class="row">
+          <p class="fs-4 mb-3">Informações para contato:</p>
+          <dt class="col-sm-2 fw-normal fs-5">Nome:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.name }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Email:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.email }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Telefone:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.phone }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Nascimento:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.birthdate }}</dd>
+          <p class="fs-4 mb-3 mt-3">Informações sobre o endereço:</p>
+          <dt class="col-sm-2 fw-normal fs-5">Postal:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.postcode }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Rua:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.street }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Número:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.number }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Bairro:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.district }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Cidade:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.city }}</dd>
+          <dt class="col-sm-2 fw-normal fs-5">Estado:</dt>
+          <dd class="col-sm-10 fontTexto">{{ user.adress.state }}</dd>
+        </dl>
+
+        <button
+          (click)="openModal(template)"
+          class="btn btn-danger col-2 btn-lg"
+        >
+          Deletar
+        </button>
+        <button (click)="toEdit()" class="btn btn-warning col-2 btn-lg">
+          Editar
+        </button>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <div>
+          <img class="img-thumbnail" [src]="user.thumb" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Temaple utilizado pelo modal com a opção de escolher se deseja a exclusão do usuário ou não-->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <h4 class="mb-3">Deseja a exclusão do usuário?</h4>
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
+        <button
+          type="button"
+          class="btn btn-success btn-lg"
+          (click)="confirm()"
+        >
+          Sim
+        </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-danger btn-lg" (click)="decline()">
+          Não
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

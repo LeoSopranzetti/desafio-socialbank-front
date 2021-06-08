@@ -1,0 +1,159 @@
+<!--Mensagem que aparece caso não exista nenhuma lista de usuários preenchida no component-->
+<div
+  class="container row d-flex flex-wrap align-items-center"
+  *ngIf="!users?.length && !value"
+>
+  <img
+    class="rounded-circle col-4 mt-3"
+    src="https://www.petz.com.br/blog/wp-content/uploads/2020/04/gato-chorando2-1280x720.jpg"
+  />
+  <p class="text-center display-6 mt-5 col-6">
+    Desculpe, não há usuários cadastrados no momento.
+  </p>
+</div>
+
+<!--Div que só é mostrada caso tenha uma lista de usuários que não seja vazia no component, contém um input para pesquisa de usuário-->
+<div *ngIf="users?.length">
+  <div class="mt-3">
+    <div Class="row mt-2 d-flex flex-wrap align-items-center">
+      <img
+        class="rounded-circle col-4"
+        src="https://ayltoninacio.com.br/img/p/74w750.jpg"
+      />
+      <h4 class="font-titulo text-center col-8">Usuários cadastrados</h4>
+    </div>
+    <div class="mb-5 col-4">
+      <div class="input-group">
+        <div class="input-group-prepend col-3">
+          <span class="input-group-text col" id="basic-addon1">Pesquisa</span>
+        </div>
+        <input
+          [formControl]="acoesInput"
+          [(ngModel)]="value"
+          type="search"
+          class="form-control col"
+          placeholder="Procure pelo nome do usuário."
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Lista de usuários paginada e com tabela no fim que só é mostrada caso o input de pesquisa(acoesInput) esteja vazio ou não inicializado-->
+<div *ngIf="!value; else listUsersByType">
+  <div *ngIf="userAuth$ | async as usuarioAutenticado">
+    <div>
+      <div class="row">
+        <div *ngFor="let user of users" class="col-6">
+          <div class="card mb-4 card-interation" (click)="toDetails(user.id)">
+            <div class="card-body">
+              <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-sm-8 mb-3">
+                  <dl class="row">
+                    <dt class="fw-normal fs-5">Nome:</dt>
+                    <dd class="fontTexto">{{ user.name }}</dd>
+                    <dt class="fw-normal fs-5">Email:</dt>
+                    <dd class="fontTexto">{{ user.email }}</dd>
+                    <dt class="fw-normal fs-5">Telefone:</dt>
+                    <dd class="fontTexto">{{ user.phone }}</dd>
+                  </dl>
+                  <p class="small">
+                    Clique no card para ver os detalhes do usuário.
+                  </p>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                  <div>
+                    <img class="img-fluid img-responsive" [src]="user.thumb" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="users?.length">
+      <h4 class="font-titulo text-center mb-5 mt-3">Usuários em tabela</h4>
+      <div class="table-responsive-md">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Nascimento</th>
+              <th scope="col ">NR</th>
+              <th scope="col">Rua</th>
+              <th scope="col">Bairro</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">UF</th>
+              <th scope="col">Código postal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row">{{ user.id }}</th>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.birthdate }}</td>
+              <td>{{ user.adress.number }}</td>
+              <td>{{ user.adress.street }}</td>
+              <td>{{ user.adress.district }}</td>
+              <td>{{ user.adress.city }}</td>
+              <td>{{ user.adress.state }}</td>
+              <td>{{ user.adress.postcode }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+      <app-pagination
+        [page]="page"
+        (paginationEvent)="changePage($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>
+
+<!--Template que substitui a lista de usuários paginada, é acionada quando o input de pesquisa(acoesInput) possui algum valor inicializado-->
+<ng-template #listUsersByType>
+  <div *ngIf="userAuth$ | async as usuarioAutenticado">
+    <div *ngIf="listUsersByType$ | async as users">
+      <div class="row">
+        <div *ngFor="let user of users" class="col-6">
+          <div class="card mb-4 card-interation" (click)="toDetails(user.id)">
+            <div class="card-body">
+              <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-sm-8 mb-3">
+                  <dl class="row">
+                    <dt class="fw-normal fs-5">Nome:</dt>
+                    <dd class="fontTexto">{{ user.name }}</dd>
+                    <dt class="fw-normal fs-5">Email:</dt>
+                    <dd class="fontTexto">{{ user.email }}</dd>
+                    <dt class="fw-normal fs-5">Telefone:</dt>
+                    <dd class="fontTexto">{{ user.phone }}</dd>
+                  </dl>
+                  <p class="small">
+                    Clique no card para ver os detalhes do usuário.
+                  </p>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                  <div>
+                    <img class="img-fluid" [src]="user.thumb" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

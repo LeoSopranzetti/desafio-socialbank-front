@@ -1,0 +1,16 @@
+<div class="alert alert-{{ type }}" role="alert" style="margin-bottom: 0">
+  <div class="d-flex justify-content-center">
+    <h4>{{ message }}</h4>
+  </div>
+  <div class="d-flex justify-content-center mt-3">
+    <button
+      type="button"
+      class="close btn btn-{{ btnType }} btn-lg"
+      data-dismiss="alert"
+      aria-label="Close"
+      (click)="onClose()"
+    >
+      Ok
+    </button>
+  </div>
+</div>

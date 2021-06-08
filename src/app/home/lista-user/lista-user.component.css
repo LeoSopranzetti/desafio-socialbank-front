@@ -1,0 +1,19 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.font-titulo {
+  font-family: "Pacifico", cursive;
+  font-size: 4.1875rem;
+  color: #66d6f1;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.75);
+}
+
+.card-interation:hover {
+  transform: scale(1.02);
+  transition: 0.4s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in-out;
+}

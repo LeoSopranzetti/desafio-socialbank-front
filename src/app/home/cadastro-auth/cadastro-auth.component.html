@@ -1,0 +1,59 @@
+<div class="card-body">
+  <h3 class="col d-flex justify-content-center display-5 mb-3">Cadastro:</h3>
+  <div class="row d-flex justify-content-center">
+    <form (ngSubmit)="cadastrar()" class="col-3" #newAuthUser="ngForm">
+      <app-mensagem
+        *ngIf="campoEmail.invalid && campoEmail.touched"
+        mensagem="Email obrigtório"
+      ></app-mensagem>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email</span>
+        </div>
+        <input
+          required
+          [(ngModel)]="newAuth.email"
+          #campoEmail="ngModel"
+          name="email"
+          type="email"
+          class="form-control"
+          placeholder="email@email.com"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <app-mensagem
+        *ngIf="campoSenha.invalid && campoSenha.touched"
+        mensagem="Senha obrigtória"
+      ></app-mensagem>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Senha</span>
+        </div>
+        <input
+          required
+          [(ngModel)]="newAuth.senha"
+          #campoSenha="ngModel"
+          name="senha"
+          type="password"
+          class="form-control"
+          placeholder="Senha"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <button class="btn btn-primary col-12" [disabled]="newAuthUser.invalid">
+        Cadastro
+      </button>
+    </form>
+
+    <div class="d-flex justify-content-center display-7 mt-3">
+      <p>
+        Já tem um cadastro?
+        <a [routerLink]="['../login']"> Faça o login aqui.</a>
+      </p>
+    </div>
+  </div>
+</div>

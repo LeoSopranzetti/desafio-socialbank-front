@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="text-center">
+    <img
+      src="https://cdn-content.talentbrand.com.br/companies/376/w512h140/eeef3c1811d8899389ec8ae579f19c3554c700b9.png?1594746569"
+      class="img-200-200 img-responsive"
+      alt="Responsive image"
+    />
+  </div>
+
+  <div *ngIf="user$ | async as user">
+    <div *ngIf="user.sub; else login">
+      <div class="d-flex justify-content-end">
+        <button
+          (click)="logout()"
+          type="button"
+          class="btn btn-danger margin-right"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <nav
+        class="navbar navbar-expand-sm navbar-light"
+        style="background-color: #66d6f1"
+      >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['home']"
+              class="nav-item nav-link nav-font"
+              href="#"
+              >Home <span class="sr-only"></span
+            ></a>
+            <div *ngIf="user.sub; else isDeslogado">
+              <a
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="['home', 'newuser']"
+                class="nav-item nav-link nav-font"
+                href="#"
+                >Novo Usuário <span class="sr-only"></span
+              ></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<ng-template #login>
+  <div class="d-flex justify-content-end">
+    <button
+      type="button"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['home', 'cadastro']"
+      class="btn btn-primary"
+    >
+      Cadastrar
+    </button>
+    <button
+      type="button"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['home', 'login']"
+      class="btn btn-success"
+    >
+      Login
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #isDeslogado>
+  <a
+    (click)="noUserLogado()"
+    [routerLink]="['home', 'login']"
+    class="nav-item nav-link nav-font"
+    href="#"
+    >Novo Usuário <span class="sr-only"></span
+  ></a>
+</ng-template>
